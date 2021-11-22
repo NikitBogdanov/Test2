@@ -5,38 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-
-namespace task7
+namespace Task1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Треклист: ");
-            string[] traklist = 
-            {  
-                "1.Gentle Giant – Free Hand[6:15]",
-                "2.Supertramp – Child Of Vision[07:27]",
-                "3.Camel – Lawrence[10:46]",
-                "4.Yes – Don’t Kill The Whale[3:55]",
-                "5. 10CC – Notell Hotel[04:58]",
-                "6.Nektar – King Of Twilight[4:16]",
-                "7.The Flower Kings – Monsters & Men[21:19]",
-                "8.Focus – Le Clochard[1:59]",
-                "9.Pendragon – Fallen Dream And Angel[5:23]",
-                "10.Kaipa – Remains Of The Day(08:02)" 
-            };
-            Console.WriteLine();
-            for (int i = 0; i < traklist.Length; i++)
+            Console.WriteLine("Введите предложение: ");
+            List<char> symbols_once_arr = new List<char>();
+            string str = Console.ReadLine();
+            char[] str_1 = new char[str.Length];
+            char[] str_2 = str.ToCharArray();
+            for (int i = 0; i < str.Length & str[i] != '.'; i++)
             {
-                Console.WriteLine(traklist[i]);
+                for (int j = i + 1; j < str.Length & str[i] != '.'; j++)
+                {
+                    if (str_2[i] == str_2[j])
+                    {
+                        if (str_2[i] != ' ')
+                        {
+                            str_1[i] = str_2[i];
+                            symbols_once_arr.Add(str_1[i]);
+                        }
+                    }
+                }
             }
-            char[] mass = traklist.ToCharArray();
-            for (int i = 0; i < mass.Length; i++)
+            Console.WriteLine(str_1);
+            string ansver = "";
+            for (int i = 0; i < symbols_once_arr.Count; i++)
             {
-                
-                Console.WriteLine(mass[i]);
+                ansver = ansver + symbols_once_arr[i] + "\t";
             }
+
+            Console.Write(ansver);
         }
     }
 }
